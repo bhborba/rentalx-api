@@ -2,6 +2,10 @@ extend type Mutation {
     createCategory(name: String!, description: String!) : Category
 }
 
+extend type Query {
+    listCategories: [Category]
+}
+
 type Category {
     id: ID
     name: String!   

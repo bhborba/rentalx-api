@@ -8,6 +8,7 @@ const categoriesRepository = new CategoriesRepository();
 
 export const CategoryResolvers: IResolvers = {
     Date: dateScalar,
+
     Mutation: {
         async createCategory(
             _: void,
@@ -18,6 +19,14 @@ export const CategoryResolvers: IResolvers = {
             const category = categoriesRepository.create({ name, description });
 
             return category;
+        },
+    },
+
+    Query: {
+        async listCategories(): Promise<Category[]> {
+            const categories = categoriesRepository.list();
+
+            return categories;
         },
     },
 };
