@@ -1,12 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { IResolvers } from 'graphql-tools';
-import { v4 as uuidv4 } from 'uuid';
 
+import { Category as CategoryModel } from '../../model/Category';
 import { Category, MutationCreateCategoryArgs } from '../generated';
+import { dateScalar } from '../scalars/dateScalar';
 
 const categories = [];
 
 export const CategoryResolvers: IResolvers = {
+    Date: dateScalar,
     Mutation: {
         async createCategory(
             _: void,
@@ -14,11 +16,13 @@ export const CategoryResolvers: IResolvers = {
         ): Promise<Category> {
             const { name, description } = args;
 
-            const category = {
+            const category = new CategoryModel();
+
+            Object.assign(category, {
                 name,
                 description,
-                id: uuidv4(),
-            };
+                created_at: new Date(),
+            });
 
             categories.push(category);
 

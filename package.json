@@ -12,7 +12,8 @@
     "express": "^4.17.1",
     "graphql-import-node": "^0.0.4",
     "lodash": "^4.17.21",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "graphql": "^15.5.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.5",
@@ -30,7 +31,6 @@
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-import-helpers": "^1.1.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
     "prettier": "^2.3.1",
     "ts-node-dev": "^1.1.6",
