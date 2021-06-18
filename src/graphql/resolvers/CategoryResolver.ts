@@ -1,7 +1,7 @@
 import { IResolvers } from 'graphql-tools';
 
 import { CategoriesRepository } from '../../modules/cars/repositories/CategoriesRepository';
-import { CreateCategoryService } from '../../services/CreateCategoryService';
+import { CreateCategoryService } from '../../modules/cars/services/CreateCategoryService';
 import { Category, MutationCreateCategoryArgs } from '../generated';
 import { dateScalar } from '../scalars/dateScalar';
 

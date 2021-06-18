@@ -27,6 +27,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   _empty?: Maybe<Scalars['String']>;
   createCategory?: Maybe<Category>;
+  createSpecification?: Maybe<Specification>;
 };
 
 
@@ -35,10 +36,24 @@ export type MutationCreateCategoryArgs = {
   description: Scalars['String'];
 };
 
+
+export type MutationCreateSpecificationArgs = {
+  name: Scalars['String'];
+  description: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
   listCategories?: Maybe<Array<Maybe<Category>>>;
+};
+
+export type Specification = {
+  __typename?: 'Specification';
+  id?: Maybe<Scalars['ID']>;
+  name: Scalars['String'];
+  description: Scalars['String'];
+  created_at?: Maybe<Scalars['Date']>;
 };
 
 
@@ -125,6 +140,7 @@ export type ResolversTypes = {
   Date: ResolverTypeWrapper<Scalars['Date']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  Specification: ResolverTypeWrapper<Specification>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
@@ -136,6 +152,7 @@ export type ResolversParentTypes = {
   Date: Scalars['Date'];
   Mutation: {};
   Query: {};
+  Specification: Specification;
   Boolean: Scalars['Boolean'];
 };
 
@@ -154,6 +171,7 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createCategory?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<MutationCreateCategoryArgs, 'name' | 'description'>>;
+  createSpecification?: Resolver<Maybe<ResolversTypes['Specification']>, ParentType, ContextType, RequireFields<MutationCreateSpecificationArgs, 'name' | 'description'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -161,11 +179,20 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   listCategories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Category']>>>, ParentType, ContextType>;
 };
 
+export type SpecificationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Specification'] = ResolversParentTypes['Specification']> = {
+  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  created_at?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
   Category?: CategoryResolvers<ContextType>;
   Date?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Specification?: SpecificationResolvers<ContextType>;
 };
 
 
