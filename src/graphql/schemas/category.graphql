@@ -3,6 +3,7 @@ extend type Mutation {
 }
 
 type Category {
+    id: ID!
     name: String!   
     description: String!
 }

@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { IResolvers } from 'graphql-tools';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Category, MutationCreateCategoryArgs } from '../generated';
 
@@ -13,15 +14,15 @@ export const CategoryResolvers: IResolvers = {
         ): Promise<Category> {
             const { name, description } = args;
 
-            categories.push({
+            const category = {
                 name,
                 description,
-            });
-
-            return {
-                name,
-                description,
+                id: uuidv4(),
             };
+
+            categories.push(category);
+
+            return category;
         },
     },
 };
