@@ -1,11 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { IResolvers } from 'graphql-tools';
 
-import { Category as CategoryModel } from '../../model/Category';
+import { CategoriesRepository } from '../../repositories/CategoriesRepository';
 import { Category, MutationCreateCategoryArgs } from '../generated';
 import { dateScalar } from '../scalars/dateScalar';
 
-const categories = [];
+const categoriesRepository = new CategoriesRepository();
 
 export const CategoryResolvers: IResolvers = {
     Date: dateScalar,
@@ -16,15 +15,7 @@ export const CategoryResolvers: IResolvers = {
         ): Promise<Category> {
             const { name, description } = args;
 
-            const category = new CategoryModel();
-
-            Object.assign(category, {
-                name,
-                description,
-                created_at: new Date(),
-            });
-
-            categories.push(category);
+            const category = categoriesRepository.create({ name, description });
 
             return category;
         },

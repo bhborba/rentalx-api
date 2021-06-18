@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import 'graphql-import-node';
 
 import { GraphQLSchema } from 'graphql';
