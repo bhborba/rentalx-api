@@ -1,3 +1,4 @@
+import { ValidationError } from 'apollo-server-express';
 import { IResolvers } from 'graphql-tools';
 
 import { CategoriesRepository } from '../../repositories/CategoriesRepository';
@@ -15,6 +16,12 @@ export const CategoryResolvers: IResolvers = {
             args: MutationCreateCategoryArgs,
         ): Promise<Category> {
             const { name, description } = args;
+
+            const categoryAlreadyExists = categoriesRepository.findByName(name);
+
+            if (categoryAlreadyExists) {
+                throw new ValidationError(`Category ${name} already exists`);
+            }
 
             const category = categoriesRepository.create({ name, description });
 
