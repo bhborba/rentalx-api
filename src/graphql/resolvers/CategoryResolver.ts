@@ -1,7 +1,7 @@
-import { ValidationError } from 'apollo-server-express';
 import { IResolvers } from 'graphql-tools';
 
 import { CategoriesRepository } from '../../repositories/CategoriesRepository';
+import { CreateCategoryService } from '../../services/CreateCategoryService';
 import { Category, MutationCreateCategoryArgs } from '../generated';
 import { dateScalar } from '../scalars/dateScalar';
 
@@ -17,13 +17,13 @@ export const CategoryResolvers: IResolvers = {
         ): Promise<Category> {
             const { name, description } = args;
 
-            const categoryAlreadyExists = categoriesRepository.findByName(name);
-
-            if (categoryAlreadyExists) {
-                throw new ValidationError(`Category ${name} already exists`);
-            }
-
-            const category = categoriesRepository.create({ name, description });
+            const createCategoryService = new CreateCategoryService(
+                categoriesRepository,
+            );
+            const category = createCategoryService.execute({
+                name,
+                description,
+            });
 
             return category;
         },
