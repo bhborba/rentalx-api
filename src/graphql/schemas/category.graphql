@@ -1,0 +1,8 @@
+extend type Mutation {
+    createCategory(name: String!, description: String!) : Category
+}
+
+type Category {
+    name: String!   
+    description: String!
+}
