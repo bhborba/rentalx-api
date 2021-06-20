@@ -1,7 +1,7 @@
 import { IResolvers } from 'graphql-tools';
 
 import { CategoriesRepository } from '../../modules/cars/repositories/CategoriesRepository';
-import { CreateCategoryService } from '../../modules/cars/services/CreateCategoryService';
+import { createCategoryUseCase } from '../../modules/cars/useCases/createCategory';
 import { Category, MutationCreateCategoryArgs } from '../generated';
 import { dateScalar } from '../scalars/dateScalar';
 
@@ -13,15 +13,14 @@ export const CategoryResolvers: IResolvers = {
     Mutation: {
         async createCategory(
             _: void,
+
             args: MutationCreateCategoryArgs,
         ): Promise<Category> {
             const { name, description } = args;
 
-            const createCategoryService = new CreateCategoryService(
-                categoriesRepository,
-            );
-            const category = createCategoryService.execute({
+            const category = createCategoryUseCase.execute({
                 name,
+
                 description,
             });
 
