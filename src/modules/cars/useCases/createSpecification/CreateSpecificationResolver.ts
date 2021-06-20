@@ -1,10 +1,13 @@
 import { IResolvers } from 'graphql-tools';
 
-import { createSpecificationUseCase } from '../../modules/cars/useCases/createSpecification';
-import { Specification, MutationCreateSpecificationArgs } from '../generated';
-import { dateScalar } from '../scalars/dateScalar';
+import { createSpecificationUseCase } from '.';
+import {
+    Specification,
+    MutationCreateSpecificationArgs,
+} from '../../../../graphql/generated';
+import { dateScalar } from '../../../../graphql/scalars/dateScalar';
 
-export const SpecificationResolvers: IResolvers = {
+export const CreateSpecificationResolver: IResolvers = {
     Date: dateScalar,
 
     Mutation: {

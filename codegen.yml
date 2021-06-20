@@ -1,5 +1,7 @@
 overwrite: true
-schema: "src/graphql/schemas/**/*.graphql"
+schema: 
+    - "src/graphql/schemas/*.graphql"
+    - "src/modules/**/schema/*.graphql"
 documents: null
 generates:
   src/graphql/generated.ts:
