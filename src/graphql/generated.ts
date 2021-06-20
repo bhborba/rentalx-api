@@ -12,6 +12,8 @@ export type Scalars = {
   Int: number;
   Float: number;
   Date: any;
+  GraphQLBoolean: any;
+  GraphQLUpload: any;
 };
 
 export type Category = {
@@ -23,11 +25,14 @@ export type Category = {
 };
 
 
+
+
 export type Mutation = {
   __typename?: 'Mutation';
   _empty?: Maybe<Scalars['String']>;
   createCategory?: Maybe<Category>;
   createSpecification?: Maybe<Specification>;
+  uploadFile?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -40,6 +45,11 @@ export type MutationCreateCategoryArgs = {
 export type MutationCreateSpecificationArgs = {
   name: Scalars['String'];
   description: Scalars['String'];
+};
+
+
+export type MutationUploadFileArgs = {
+  file: Scalars['GraphQLUpload'];
 };
 
 export type Query = {
@@ -138,10 +148,12 @@ export type ResolversTypes = {
   ID: ResolverTypeWrapper<Scalars['ID']>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Date: ResolverTypeWrapper<Scalars['Date']>;
+  GraphQLBoolean: ResolverTypeWrapper<Scalars['GraphQLBoolean']>;
+  GraphQLUpload: ResolverTypeWrapper<Scalars['GraphQLUpload']>;
   Mutation: ResolverTypeWrapper<{}>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Query: ResolverTypeWrapper<{}>;
   Specification: ResolverTypeWrapper<Specification>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -150,10 +162,12 @@ export type ResolversParentTypes = {
   ID: Scalars['ID'];
   String: Scalars['String'];
   Date: Scalars['Date'];
+  GraphQLBoolean: Scalars['GraphQLBoolean'];
+  GraphQLUpload: Scalars['GraphQLUpload'];
   Mutation: {};
+  Boolean: Scalars['Boolean'];
   Query: {};
   Specification: Specification;
-  Boolean: Scalars['Boolean'];
 };
 
 export type CategoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Category'] = ResolversParentTypes['Category']> = {
@@ -168,10 +182,19 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
   name: 'Date';
 }
 
+export interface GraphQlBooleanScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['GraphQLBoolean'], any> {
+  name: 'GraphQLBoolean';
+}
+
+export interface GraphQlUploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['GraphQLUpload'], any> {
+  name: 'GraphQLUpload';
+}
+
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createCategory?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<MutationCreateCategoryArgs, 'name' | 'description'>>;
   createSpecification?: Resolver<Maybe<ResolversTypes['Specification']>, ParentType, ContextType, RequireFields<MutationCreateSpecificationArgs, 'name' | 'description'>>;
+  uploadFile?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationUploadFileArgs, 'file'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -190,6 +213,8 @@ export type SpecificationResolvers<ContextType = any, ParentType extends Resolve
 export type Resolvers<ContextType = any> = {
   Category?: CategoryResolvers<ContextType>;
   Date?: GraphQLScalarType;
+  GraphQLBoolean?: GraphQLScalarType;
+  GraphQLUpload?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Specification?: SpecificationResolvers<ContextType>;

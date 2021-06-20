@@ -1,0 +1,6 @@
+scalar GraphQLUpload
+scalar GraphQLBoolean
+
+extend type Mutation {
+    uploadFile(file: GraphQLUpload!) : Boolean
+}

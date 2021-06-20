@@ -1,5 +1,6 @@
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
+import { graphqlUploadExpress } from 'graphql-upload';
 
 import schema from './graphql/schemasMap';
 import { router } from './routes';
@@ -12,8 +13,9 @@ app.use(express.json());
 app.use(router);
 
 // GraphQL
-
+app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 const server = new ApolloServer({
+    uploads: false,
     schema,
 });
 
