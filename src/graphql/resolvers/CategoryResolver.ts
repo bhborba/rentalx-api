@@ -1,11 +1,9 @@
 import { IResolvers } from 'graphql-tools';
 
-import { CategoriesRepository } from '../../modules/cars/repositories/CategoriesRepository';
 import { createCategoryUseCase } from '../../modules/cars/useCases/createCategory';
+import { listCategoriesUseCase } from '../../modules/cars/useCases/listCategories';
 import { Category, MutationCreateCategoryArgs } from '../generated';
 import { dateScalar } from '../scalars/dateScalar';
-
-const categoriesRepository = new CategoriesRepository();
 
 export const CategoryResolvers: IResolvers = {
     Date: dateScalar,
@@ -30,7 +28,7 @@ export const CategoryResolvers: IResolvers = {
 
     Query: {
         async listCategories(): Promise<Category[]> {
-            const categories = categoriesRepository.list();
+            const categories = listCategoriesUseCase.execute();
 
             return categories;
         },
