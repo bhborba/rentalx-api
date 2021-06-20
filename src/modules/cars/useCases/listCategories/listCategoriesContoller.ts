@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { ListCategoriesUseCase } from './listCategoriesUseCase';
+import { ListCategoriesUseCase } from './ListCategoriesUseCase';
 
 class ListCategoriesContoller {
     constructor(private listCategoriesUseCase: ListCategoriesUseCase) {}

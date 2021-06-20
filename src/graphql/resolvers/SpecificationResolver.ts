@@ -1,11 +1,8 @@
 import { IResolvers } from 'graphql-tools';
 
-import { SpecificationsRepository } from '../../modules/cars/repositories/implementations/SpecificationsRepository';
-import { CreateSpecificationService } from '../../modules/cars/services/CreateSpecificationService';
+import { createSpecificationUseCase } from '../../modules/cars/useCases/createSpecification';
 import { Specification, MutationCreateSpecificationArgs } from '../generated';
 import { dateScalar } from '../scalars/dateScalar';
-
-const specificationsRepository = new SpecificationsRepository();
 
 export const SpecificationResolvers: IResolvers = {
     Date: dateScalar,
@@ -18,11 +15,7 @@ export const SpecificationResolvers: IResolvers = {
         ): Promise<Specification> {
             const { name, description } = args;
 
-            const createSpecificationService = new CreateSpecificationService(
-                specificationsRepository,
-            );
-
-            const specification = createSpecificationService.execute({
+            const specification = createSpecificationUseCase.execute({
                 name,
 
                 description,
