@@ -1,6 +1,6 @@
 import { IResolvers } from 'graphql-tools';
 
-import { SpecificationsRepository } from '../../modules/cars/repositories/SpecificationsRepository';
+import { SpecificationsRepository } from '../../modules/cars/repositories/implementations/SpecificationsRepository';
 import { CreateSpecificationService } from '../../modules/cars/services/CreateSpecificationService';
 import { Specification, MutationCreateSpecificationArgs } from '../generated';
 import { dateScalar } from '../scalars/dateScalar';
@@ -13,6 +13,7 @@ export const SpecificationResolvers: IResolvers = {
     Mutation: {
         async createSpecification(
             _: void,
+
             args: MutationCreateSpecificationArgs,
         ): Promise<Specification> {
             const { name, description } = args;
@@ -20,8 +21,10 @@ export const SpecificationResolvers: IResolvers = {
             const createSpecificationService = new CreateSpecificationService(
                 specificationsRepository,
             );
+
             const specification = createSpecificationService.execute({
                 name,
+
                 description,
             });
 
