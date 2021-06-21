@@ -1,6 +1,17 @@
 version: "3.8"
 
 services:
+    database_rentalx:
+        image: mysql
+        container_name: database_rentalx
+        restart: always
+        ports:
+            - 8080:8080
+        environment:
+            - MYSQL_ROOT_PASSWORD=rentalx
+            - MYSQL_DATABASE=rentalx
+        volumes: 
+            - mysqldata:/data/mysql
     app:
         build: .
         container_name: rentx
@@ -8,3 +19,10 @@ services:
             - 3333:3333
         volumes:
             - .:/usr/app
+        links:
+            - database_rentalx
+        depends_on: 
+            - database_rentalx
+volumes:
+    mysqldata:
+        driver: local

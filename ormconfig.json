@@ -1,7 +1,8 @@
 {
     "type": "mysql",
+    "port": 3306,
     "host": "localhost",
-    "username": "",
-    "password": "",
+    "username": "root",
+    "password": "rentalx",
     "database": "rentalx"
 }
