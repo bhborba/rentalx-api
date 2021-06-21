@@ -1,7 +1,7 @@
 import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
-import { ListCategoriesContoller } from './listCategoriesContoller';
+import { ListCategoriesContoller } from './ListCategoriesContoller';
 import { ListCategoriesResolver } from './ListCategoriesResolver';
-import { ListCategoriesUseCase } from './listCategoriesUseCase';
+import { ListCategoriesUseCase } from './ListCategoriesUseCase';
 
 const categoriesRepository = CategoriesRepository.getInstance();
 const listCategoriesUseCase = new ListCategoriesUseCase(categoriesRepository);
