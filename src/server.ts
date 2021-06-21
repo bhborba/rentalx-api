@@ -5,6 +5,8 @@ import { graphqlUploadExpress } from 'graphql-upload';
 import schema from './graphql/schemasMap';
 import { router } from './routes';
 
+import './database';
+
 const app = express();
 
 app.use(express.json());
