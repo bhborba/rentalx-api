@@ -1,5 +1,9 @@
+scalar GraphQLUpload
+scalar GraphQLBoolean
+
 extend type Mutation {
     createCategory(name: String!, description: String!) : Category
+    importCategory(file: GraphQLUpload!) : Boolean
 }
 
 extend type Query {

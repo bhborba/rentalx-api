@@ -32,7 +32,7 @@ export type Mutation = {
   _empty?: Maybe<Scalars['String']>;
   createCategory?: Maybe<Category>;
   createSpecification?: Maybe<Specification>;
-  uploadFile?: Maybe<Scalars['Boolean']>;
+  importCategory?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -48,7 +48,7 @@ export type MutationCreateSpecificationArgs = {
 };
 
 
-export type MutationUploadFileArgs = {
+export type MutationImportCategoryArgs = {
   file: Scalars['GraphQLUpload'];
 };
 
@@ -194,7 +194,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createCategory?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<MutationCreateCategoryArgs, 'name' | 'description'>>;
   createSpecification?: Resolver<Maybe<ResolversTypes['Specification']>, ParentType, ContextType, RequireFields<MutationCreateSpecificationArgs, 'name' | 'description'>>;
-  uploadFile?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationUploadFileArgs, 'file'>>;
+  importCategory?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationImportCategoryArgs, 'file'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
